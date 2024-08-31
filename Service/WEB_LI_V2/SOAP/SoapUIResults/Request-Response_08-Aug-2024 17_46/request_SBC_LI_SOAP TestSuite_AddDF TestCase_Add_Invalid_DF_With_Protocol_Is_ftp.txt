@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md" xmlns:x1="http://genericX1.cirpack/genericX1-extern-md/x1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gen:AddDFRequest>
+         <x1:protocol>ftp</x1:protocol>
+         <x1:name>TMA_QA</x1:name>
+         <x1:ip>192.168.33.105</x1:ip>
+         <x1:port>7012</x1:port>
+         <x1:dfid>7</x1:dfid>
+      </gen:AddDFRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

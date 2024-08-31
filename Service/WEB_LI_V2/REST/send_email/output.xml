@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.4 on win32)" generated="2024-08-09T14:39:14.454460" rpa="false" schemaversion="5">
+<suite id="s1" name="SendEmail" source="D:\SBC_WEB_LI_AUTO\WEB_LI_7.8\WEB_LI_V2\REST\Tests\SendEmail.robot">
+<test id="s1-t1" name="Send Auto Result Notification Email" line="7">
+<if>
+<branch type="IF" condition="'${REPORT_MODE}' == 'REST'">
+<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
+<kw name="Send Notification Email for REST" owner="Common">
+<kw name="Get Remote RPM" owner="Common">
+<kw name="Open Connection" owner="SSHLibrary">
+<arg>${SSH_HOST}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" start="2024-08-09T14:39:14.747329" elapsed="0.000996"/>
+</kw>
+<kw name="Login" owner="SSHLibrary">
+<msg time="2024-08-09T14:39:14.748325" level="INFO">Logging into '192.168.33.220:22' as 'root'.</msg>
+<msg time="2024-08-09T14:39:15.966388" level="INFO">Read output: Last login: Fri Aug  9 09:36:30 2024 from 192.168.37.10
+[root@node1 ~]#</msg>
+<arg>${SSH_USERNAME}</arg>
+<arg>${SSH_PASSWORD}</arg>
+<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
+<status status="PASS" start="2024-08-09T14:39:14.748325" elapsed="1.218063"/>
+</kw>
+<kw name="Execute Command" owner="SSHLibrary">
+<msg time="2024-08-09T14:39:15.966388" level="INFO">Executing command 'yum list installed | grep SBC_LI.noarch | awk -F" " '{print $2}' | awk -F".el" '{print $1}''.</msg>
+<msg time="2024-08-09T14:39:17.521361" level="INFO">Command exited with return code 0.</msg>
+<msg time="2024-08-09T14:39:17.521361" level="INFO">${RPM_REVISION} = </msg>
+<var>${RPM_REVISION}</var>
+<arg>${RPM_NAME}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<status status="PASS" start="2024-08-09T14:39:15.966388" elapsed="1.554973"/>
+</kw>
+<kw name="Close All Connections" owner="SSHLibrary">
+<doc>Closes all open connections.</doc>
+<status status="PASS" start="2024-08-09T14:39:17.521361" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-09T14:39:17.521361" level="INFO"/>
+<arg>${RPM_REVISION}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-09T14:39:17.521361" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${RPM_REVISION}</value>
+<status status="PASS" start="2024-08-09T14:39:17.521361" elapsed="0.000000"/>
+</return>
+<msg time="2024-08-09T14:39:17.522497" level="INFO">${WEB_SERVICES_RPM_REVISION} = </msg>
+<var>${WEB_SERVICES_RPM_REVISION}</var>
+<arg>${WEB_SSH_HOST}</arg>
+<arg>${WEB_SSH_USERNAME}</arg>
+<arg>${WEB_SSH_PASSWORD}</arg>
+<arg>${WEB_SERVICES_RPM_REVISION}</arg>
+<status status="PASS" start="2024-08-09T14:39:14.747329" elapsed="2.775168"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-08-09T14:39:17.522497" level="INFO">${SUBJECT_WEB_SERVICES} = [ SBC WEB LI ] AUTO NON REG TEST FOR REST - RPM REVISION </msg>
+<var>${SUBJECT_WEB_SERVICES}</var>
+<arg>[ SBC WEB LI ] AUTO NON REG TEST FOR REST - RPM REVISION ${WEB_SERVICES_RPM_REVISION}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-08-09T14:39:17.522497" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-09T14:39:17.522497" level="INFO">[ SBC WEB LI ] AUTO NON REG TEST FOR REST - RPM REVISION </msg>
+<arg>${SUBJECT_WEB_SERVICES}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-09T14:39:17.522497" elapsed="0.000000"/>
+</kw>
+<kw name="Send Notification Email REST" owner="Common">
+<kw name="Send Count TCs REST" owner="Common">
+<kw name="Count Test Cases" owner="sendEmail">
+<msg time="2024-08-09T14:39:17.721857" level="INFO">00:00:04
+PASS TCs: 90 (100.0%)
+FAILED TCs: 0 (0.0%)
+Total TCs:  90
+Total Duration:  00:00:04
+Total Test Files:  14</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${value} = 90</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${value2} = 90 (100.0%)</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${value3} = 0 (0.0%)</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${value4} = 14</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${value5} = 00:00:04</msg>
+<var>${value}</var>
+<var>${value2}</var>
+<var>${value3}</var>
+<var>${value4}</var>
+<var>${value5}</var>
+<arg>${OUTPUT_DIR}</arg>
+<status status="PASS" start="2024-08-09T14:39:17.523494" elapsed="0.198363"/>
+</kw>
+<return>
+<value>${value}</value>
+<value>${value2}</value>
+<value>${value3}</value>
+<value>${value4}</value>
+<value>${value5}</value>
+<status status="PASS" start="2024-08-09T14:39:17.721857" elapsed="0.000000"/>
+</return>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${TOTAL} = 90</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${PASS} = 90 (100.0%)</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${FAIL} = 0 (0.0%)</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${VALIDATIONFILES} = 14</msg>
+<msg time="2024-08-09T14:39:17.721857" level="INFO">${DURATION} = 00:00:04</msg>
+<var>${TOTAL}</var>
+<var>${PASS}</var>
+<var>${FAIL}</var>
+<var>${VALIDATIONFILES}</var>
+<var>${DURATION}</var>
+<arg>${OUTPUT_DIR}</arg>
+<status status="PASS" start="2024-08-09T14:39:17.523494" elapsed="0.198363"/>
+</kw>
+<kw name="Send Mail With Attachment" owner="sendEmail">
+<arg>${EMAIL_SENDER}</arg>
+<arg>${EMAIL_PWD}</arg>
+<arg>${EMAIL_RECEIVER}</arg>
+<arg>${EMAIL_SUBJECT}</arg>
+<arg>${EMAIL_CONTENT}</arg>
+<arg>${TOTAL}</arg>
+<arg>${PASS}</arg>
+<arg>${FAIL}</arg>
+<arg>${VALIDATIONFILES}</arg>
+<arg>${DURATION}</arg>
+<arg>${EMAIL_CONTENT2}</arg>
+<arg>${LOG_HTML}</arg>
+<arg>${REPORT_HTML}</arg>
+<arg>${MODE}</arg>
+<status status="PASS" start="2024-08-09T14:39:17.722855" elapsed="0.140518"/>
+</kw>
+<arg>${SUBJECT_WEB_SERVICES}</arg>
+<arg>result/log.html</arg>
+<arg>result/report.html</arg>
+<arg>result/output.xml</arg>
+<arg>SBC_WEB_LI_REST_RHEL8</arg>
+<status status="PASS" start="2024-08-09T14:39:17.522497" elapsed="0.340876"/>
+</kw>
+<status status="PASS" start="2024-08-09T14:39:14.747329" elapsed="3.116044"/>
+</kw>
+<arg>Send Notification Email for REST</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="PASS" start="2024-08-09T14:39:14.747329" elapsed="3.116044"/>
+</kw>
+<status status="PASS" start="2024-08-09T14:39:14.746303" elapsed="3.117070"/>
+</branch>
+<branch type="ELSE IF" condition="'${REPORT_MODE}' == 'SOAP'">
+<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
+<arg>Send Notification Email for SOAP</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" start="2024-08-09T14:39:17.863373" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-09T14:39:17.863373" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ERROR: Wrong options. Please select REPORT_MODE=[SOAP|REST].</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-09T14:39:17.863373" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-09T14:39:17.863373" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-08-09T14:39:14.746303" elapsed="3.117070"/>
+</if>
+<tag>SendEmail</tag>
+<status status="PASS" start="2024-08-09T14:39:14.746303" elapsed="3.117070"/>
+</test>
+<doc>Tool to send notification email</doc>
+<status status="PASS" start="2024-08-09T14:39:14.455458" elapsed="3.408915"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">SendEmail</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="SendEmail">SendEmail</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

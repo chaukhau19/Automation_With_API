@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="65e283cc-dfea-48d4-9b69-bcecdf650505" activeEnvironment="Default" name="Clear" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="38311076-0fe0-4c96-b3bd-96e2c32b4aec" wsaVersion="NONE" name="soapServer" type="wsdl" bindingName="{http://genericX1.cirpack/genericX1-extern-md}soapServer" soapVersion="1_1" anonymous="optional" definition="https://192.168.33.166:443/soap?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="CreateWsdlDocumentationAction@report-directory">D:\SoapUIDoc</con:setting></con:settings><con:definitionCache type="TEXT" rootPart="https://192.168.33.166:443/soap?wsdl"><con:part><con:url>https://192.168.33.166:443/soap?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://genericX1.cirpack/genericX1-extern-md" name="soapServer" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:s0="http://genericX1.cirpack/genericX1-extern-md/x1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="http://genericX1.cirpack/genericX1-extern-md" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://genericX1.cirpack/genericX1-extern-md/x1" elementFormDefault="qualified">
+      <xs:simpleType name="string255Pattern">
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="targetTypePattern">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[Ss][Ii][Pp][Uu][Rr][Ii]|[Tt][Ee][Ll][Uu][Rr][Ll]"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="df2idPattern">
+        <xs:restriction base="xs:unsignedInt">
+          <xs:minInclusive value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="liidPattern">
+        <xs:restriction base="xs:unsignedInt"/>
+      </xs:simpleType>
+      <xs:simpleType name="df3idPattern">
+        <xs:restriction base="xs:unsignedInt">
+          <xs:minInclusive value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="activatedUsers">
+        <xs:sequence>
+          <xs:element name="targetNumber" type="s0:string255Pattern">
+            <xs:annotation>
+              <xs:documentation>Target number - Defines the number of the intercepted target</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="targetType" type="s0:targetTypePattern">
+            <xs:annotation>
+              <xs:documentation>Target type - Defines the type of the target number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="df2id" type="s0:df2idPattern">
+            <xs:annotation>
+              <xs:documentation>ID of the DF2 for IRI delivery</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="liid" type="s0:liidPattern">
+            <xs:annotation>
+              <xs:documentation>Pattern for a valid Lawful Interception IDentifier - 4 Bytes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="df3id" type="s0:df3idPattern" minOccurs="0" nillable="true">
+            <xs:annotation>
+              <xs:documentation>ID of the DF3 for CC delivery</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="successResponseType">
+        <xs:sequence>
+          <xs:element name="success" type="xs:boolean" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="activatedUsersArray">
+        <xs:sequence>
+          <xs:element name="activatedUsers" type="s0:activatedUsers" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="errorcode">
+        <xs:restriction base="xs:integer">
+          <xs:enumeration value="100"/>
+          <xs:enumeration value="101"/>
+          <xs:enumeration value="102"/>
+          <xs:enumeration value="103"/>
+          <xs:enumeration value="104"/>
+          <xs:enumeration value="105"/>
+          <xs:enumeration value="106"/>
+          <xs:enumeration value="107"/>
+          <xs:enumeration value="108"/>
+          <xs:enumeration value="200"/>
+          <xs:enumeration value="300"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="UnsignedShort">
+        <xs:restriction base="xs:nonNegativeInteger">
+          <xs:minInclusive value="1"/>
+          <xs:maxInclusive value="65535"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="dfxidPattern">
+        <xs:restriction base="xs:unsignedInt">
+          <xs:minInclusive value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="protocolTypePattern">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[Tt][Cc][Pp]"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element name="errormessage" type="xs:string" minOccurs="0" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Additional error message to specify the problem in detail</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="errorcode" type="s0:errorcode" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DFStructure">
+        <xs:sequence>
+          <xs:element name="protocol" type="s0:protocolTypePattern" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Protocol Type - Defines which type of protocol is used for IRI or CC delivery to this server</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="name" type="s0:string255Pattern">
+            <xs:annotation>
+              <xs:documentation>Name - Defines the name of the DF</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ip" type="s0:string255Pattern">
+            <xs:annotation>
+              <xs:documentation>IP Address - IPv4 or IPv6 address of the DF</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="port" type="s0:UnsignedShort">
+            <xs:annotation>
+              <xs:documentation>Port of the DF - only needed for UDP and TCP protocol type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="dfid" type="s0:dfxidPattern">
+            <xs:annotation>
+              <xs:documentation>ID of the DF3 for CC delivery</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TargetStructure">
+        <xs:sequence>
+          <xs:element name="targetNumber" type="s0:string255Pattern">
+            <xs:annotation>
+              <xs:documentation>Target number - Defines the number of the intercepted target</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="targetType" type="s0:targetTypePattern">
+            <xs:annotation>
+              <xs:documentation>Target type - Defines the type of the target number</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="df2id" type="s0:df2idPattern">
+            <xs:annotation>
+              <xs:documentation>ID of the DF2 for IRI delivery</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="liid" type="s0:liidPattern">
+            <xs:annotation>
+              <xs:documentation>Pattern for a valid Lawful Interception IDentifier - 4 Bytes</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="df3id" type="s0:df3idPattern" minOccurs="0" nillable="true">
+            <xs:annotation>
+              <xs:documentation>ID of the DF3 for CC delivery</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createdDFs">
+        <xs:sequence>
+          <xs:element name="protocol" type="s0:protocolTypePattern" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Protocol Type - Defines which type of protocol is used for IRI or CC delivery to this server</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="name" type="s0:string255Pattern">
+            <xs:annotation>
+              <xs:documentation>Name - Defines the name of the DF</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ip" type="s0:string255Pattern">
+            <xs:annotation>
+              <xs:documentation>IP Address - IPv4 or IPv6 address of the DF</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="port" type="s0:UnsignedShort">
+            <xs:annotation>
+              <xs:documentation>Port of the DF - only needed for UDP and TCP protocol type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="dfid" type="s0:dfxidPattern">
+            <xs:annotation>
+              <xs:documentation>ID of the DF3 for CC delivery</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createdDFsArray">
+        <xs:sequence>
+          <xs:element name="createdDFs" type="s0:createdDFs" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="activatedUsers" type="s0:activatedUsers"/>
+      <xs:element name="successResponseType" type="s0:successResponseType"/>
+      <xs:element name="ErrorResponse" type="s0:ErrorResponse"/>
+      <xs:element name="createdDFs" type="s0:createdDFs"/>
+    </xs:schema>
+    <xs:schema targetNamespace="http://genericX1.cirpack/genericX1-extern-md" elementFormDefault="qualified">
+      <xs:import namespace="http://genericX1.cirpack/genericX1-extern-md/x1"/>
+      <xs:complexType name="ErrorResponseType"/>
+      <xs:complexType name="ConnectionCheckRequest"/>
+      <xs:complexType name="ErrorResponse"/>
+      <xs:complexType name="ListDFsRequest"/>
+      <xs:complexType name="ListInterceptionsRequest"/>
+      <xs:complexType name="ConnectionCheckResponse">
+        <xs:sequence>
+          <xs:element name="ConnectionCheckResult" type="s0:successResponseType" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponseResponse">
+        <xs:sequence>
+          <xs:element name="ErrorResponseResult" type="s0:ErrorResponse" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ErrorResponseType" type="tns:ErrorResponseType"/>
+      <xs:element name="ConnectionCheckRequest" type="tns:ConnectionCheckRequest"/>
+      <xs:element name="ErrorResponse" type="tns:ErrorResponse"/>
+      <xs:element name="ListDFsRequest" type="tns:ListDFsRequest"/>
+      <xs:element name="ListInterceptionsRequest" type="tns:ListInterceptionsRequest"/>
+      <xs:element name="ModifyDFResponse" type="s0:successResponseType"/>
+      <xs:element name="ConnectionCheckResponse" type="tns:ConnectionCheckResponse"/>
+      <xs:element name="ListInterceptionsResponse" type="s0:activatedUsersArray"/>
+      <xs:element name="ModifyDFRequest" type="s0:DFStructure"/>
+      <xs:element name="AddInterceptionRequest" type="s0:TargetStructure"/>
+      <xs:element name="RetrieveInterceptionResponse" type="s0:activatedUsers"/>
+      <xs:element name="ErrorResponseResponse" type="tns:ErrorResponseResponse"/>
+      <xs:element name="ListDFsResponse" type="s0:createdDFsArray"/>
+      <xs:element name="RetrieveInterceptionRequest" type="xs:unsignedInt"/>
+      <xs:element name="DeleteDFRequest" type="xs:unsignedInt"/>
+      <xs:element name="DeleteDFResponse" type="s0:successResponseType"/>
+      <xs:element name="AddDFRequest" type="s0:DFStructure"/>
+      <xs:element name="AddDFResponse" type="s0:successResponseType"/>
+      <xs:element name="DeleteInterceptionRequest" type="xs:unsignedInt"/>
+      <xs:element name="DeleteInterceptionResponse" type="s0:successResponseType"/>
+      <xs:element name="RetrieveDFRequest" type="xs:unsignedInt"/>
+      <xs:element name="RetrieveDFResponse" type="s0:DFStructure"/>
+      <xs:element name="AddInterceptionResponse" type="s0:successResponseType"/>
+      <xs:element name="ModifyInterceptionRequest" type="s0:TargetStructure"/>
+      <xs:element name="ModifyInterceptionResponse" type="s0:successResponseType"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ModifyDFRequest">
+    <wsdl:part name="ModifyDFRequest" element="tns:ModifyDFRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ModifyDFResponse">
+    <wsdl:part name="ModifyDFResponse" element="tns:ModifyDFResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ErrorResponseType">
+    <wsdl:part name="ErrorResponseType" element="tns:ErrorResponseType"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInterceptionRequest">
+    <wsdl:part name="RetrieveInterceptionRequest" element="tns:RetrieveInterceptionRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInterceptionResponse">
+    <wsdl:part name="RetrieveInterceptionResponse" element="tns:RetrieveInterceptionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ListDFsRequest">
+    <wsdl:part name="ListDFsRequest" element="tns:ListDFsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ListDFsResponse">
+    <wsdl:part name="ListDFsResponse" element="tns:ListDFsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteDFRequest">
+    <wsdl:part name="DeleteDFRequest" element="tns:DeleteDFRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteDFResponse">
+    <wsdl:part name="DeleteDFResponse" element="tns:DeleteDFResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddDFRequest">
+    <wsdl:part name="AddDFRequest" element="tns:AddDFRequest"/>
+  </wsdl:message>
+  <wsdl:message name="AddDFResponse">
+    <wsdl:part name="AddDFResponse" element="tns:AddDFResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteInterceptionRequest">
+    <wsdl:part name="DeleteInterceptionRequest" element="tns:DeleteInterceptionRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteInterceptionResponse">
+    <wsdl:part name="DeleteInterceptionResponse" element="tns:DeleteInterceptionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ListInterceptionsRequest">
+    <wsdl:part name="ListInterceptionsRequest" element="tns:ListInterceptionsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ListInterceptionsResponse">
+    <wsdl:part name="ListInterceptionsResponse" element="tns:ListInterceptionsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveDFRequest">
+    <wsdl:part name="RetrieveDFRequest" element="tns:RetrieveDFRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveDFResponse">
+    <wsdl:part name="RetrieveDFResponse" element="tns:RetrieveDFResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectionCheckRequest">
+    <wsdl:part name="ConnectionCheckRequest" element="tns:ConnectionCheckRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ConnectionCheckResponse">
+    <wsdl:part name="ConnectionCheckResponse" element="tns:ConnectionCheckResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddInterceptionRequest">
+    <wsdl:part name="AddInterceptionRequest" element="tns:AddInterceptionRequest"/>
+  </wsdl:message>
+  <wsdl:message name="AddInterceptionResponse">
+    <wsdl:part name="AddInterceptionResponse" element="tns:AddInterceptionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ModifyInterceptionRequest">
+    <wsdl:part name="ModifyInterceptionRequest" element="tns:ModifyInterceptionRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ModifyInterceptionResponse">
+    <wsdl:part name="ModifyInterceptionResponse" element="tns:ModifyInterceptionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ErrorResponse">
+    <wsdl:part name="ErrorResponse" element="tns:ErrorResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ErrorResponseResponse">
+    <wsdl:part name="ErrorResponseResponse" element="tns:ErrorResponseResponse"/>
+  </wsdl:message>
+  <wsdl:service name="soapServer">
+    <wsdl:port name="soapServer" binding="tns:soapServer">
+      <soap:address location="https://192.168.33.166:443/soap"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:portType name="soapServer">
+    <wsdl:operation name="ModifyDF" parameterOrder="ModifyDFRequest">
+      <wsdl:documentation>Modify DF
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param id:integer, name:string, protocol:string, ip:string, port:integer
+        @rtype successResponseType
+        @format json send to daemon contain Method name have define LI daemon
+        @return successResponseType inform failed or success</wsdl:documentation>
+      <wsdl:input name="ModifyDFRequest" message="tns:ModifyDFRequest"/>
+      <wsdl:output name="ModifyDFResponse" message="tns:ModifyDFResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveInterception" parameterOrder="RetrieveInterceptionRequest">
+      <wsdl:documentation>Retrieve target
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param :id:integer, number:string, type:string, mediationFunctionX2:integer, mediationFunctionX3:integer
+        @rtype TargetStructure
+        @format json send to daemon contain Method name have define LI daemon
+        @return TargetStructure</wsdl:documentation>
+      <wsdl:input name="RetrieveInterceptionRequest" message="tns:RetrieveInterceptionRequest"/>
+      <wsdl:output name="RetrieveInterceptionResponse" message="tns:RetrieveInterceptionResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="ListDFs" parameterOrder="ListDFsRequest">
+      <wsdl:documentation>List DFs
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param
+        @rtype createdDFs
+        @format json send to daemon contain Method name have define LI daemon
+        @return createdDFs</wsdl:documentation>
+      <wsdl:input name="ListDFsRequest" message="tns:ListDFsRequest"/>
+      <wsdl:output name="ListDFsResponse" message="tns:ListDFsResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDF" parameterOrder="DeleteDFRequest">
+      <wsdl:documentation>Delete DF
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param id:integer
+        @rtype successResponseType
+        @format json send to daemon contain Method name have define LI daemon
+        @return successResponseType inform failed or success</wsdl:documentation>
+      <wsdl:input name="DeleteDFRequest" message="tns:DeleteDFRequest"/>
+      <wsdl:output name="DeleteDFResponse" message="tns:DeleteDFResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddDF" parameterOrder="AddDFRequest">
+      <wsdl:documentation>Addd DF
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param id:integer, name:string, protocol:string, ip:string, port:integer
+        @rtype successResponseType
+        @format json send to daemon contain Method name have define LI daemon
+        @return successResponseType inform failed or success</wsdl:documentation>
+      <wsdl:input name="AddDFRequest" message="tns:AddDFRequest"/>
+      <wsdl:output name="AddDFResponse" message="tns:AddDFResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInterception" parameterOrder="DeleteInterceptionRequest">
+      <wsdl:documentation>Delete target
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param :liid:integer
+        @rtype successResponseType
+        @format json send to daemon contain Method name have define LI daemon
+        @return successResponseType</wsdl:documentation>
+      <wsdl:input name="DeleteInterceptionRequest" message="tns:DeleteInterceptionRequest"/>
+      <wsdl:output name="DeleteInterceptionResponse" message="tns:DeleteInterceptionResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="ListInterceptions" parameterOrder="ListInterceptionsRequest">
+      <wsdl:documentation>List targets
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param
+        @rtype activatedUsers
+        @format json send to daemon contain Method name have define LI daemon
+        @return activatedUsers</wsdl:documentation>
+      <wsdl:input name="ListInterceptionsRequest" message="tns:ListInterceptionsRequest"/>
+      <wsdl:output name="ListInterceptionsResponse" message="tns:ListInterceptionsResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDF" parameterOrder="RetrieveDFRequest">
+      <wsdl:documentation>Retrieve DF
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param dfid:integer
+        @rtype DFStructure
+        @format json send to daemon contain Method name have define LI daemon
+        @return DFStructure</wsdl:documentation>
+      <wsdl:input name="RetrieveDFRequest" message="tns:RetrieveDFRequest"/>
+      <wsdl:output name="RetrieveDFResponse" message="tns:RetrieveDFResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectionCheck" parameterOrder="ConnectionCheckRequest">
+      <wsdl:documentation>Check Connection of webserver with daemon
+        send message to daemon if daemon response message
+        Connection is ok</wsdl:documentation>
+      <wsdl:input name="ConnectionCheckRequest" message="tns:ConnectionCheckRequest"/>
+      <wsdl:output name="ConnectionCheckResponse" message="tns:ConnectionCheckResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddInterception" parameterOrder="AddInterceptionRequest">
+      <wsdl:documentation>Add target
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param :id:integer, number:string, type:string, mediationFunctionX2:integer, mediationFunctionX3:integer
+        @rtype successResponseType
+        @format json send to daemon contain Method name have define LI daemon
+        @return successResponseType</wsdl:documentation>
+      <wsdl:input name="AddInterceptionRequest" message="tns:AddInterceptionRequest"/>
+      <wsdl:output name="AddInterceptionResponse" message="tns:AddInterceptionResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyInterception" parameterOrder="ModifyInterceptionRequest">
+      <wsdl:documentation>Moddify target
+        Method is reviece message from client
+        Proccess message, and then send message to daemon
+        Daemon response message, webserver proccess and response to client
+        @param :id:integer, number:string, type:string, mediationFunctionX2:integer, mediationFunctionX3:integer
+        @rtype successResponseType
+        @format json send to daemon contain Method name have define LI daemon
+        @return successResponseType</wsdl:documentation>
+      <wsdl:input name="ModifyInterceptionRequest" message="tns:ModifyInterceptionRequest"/>
+      <wsdl:output name="ModifyInterceptionResponse" message="tns:ModifyInterceptionResponse"/>
+      <wsdl:fault name="ErrorResponseType" message="tns:ErrorResponseType"/>
+    </wsdl:operation>
+    <wsdl:operation name="ErrorResponse" parameterOrder="ErrorResponse">
+      <wsdl:documentation>Fake method used to force Spyne to add ErrorResponse object in .wsdl file</wsdl:documentation>
+      <wsdl:input name="ErrorResponse" message="tns:ErrorResponse"/>
+      <wsdl:output name="ErrorResponseResponse" message="tns:ErrorResponseResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="soapServer" type="tns:soapServer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ModifyDF">
+      <soap:operation soapAction="ModifyDF" style="document"/>
+      <wsdl:input name="ModifyDFRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ModifyDFResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveInterception">
+      <soap:operation soapAction="RetrieveInterception" style="document"/>
+      <wsdl:input name="RetrieveInterceptionRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RetrieveInterceptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListDFs">
+      <soap:operation soapAction="ListDFs" style="document"/>
+      <wsdl:input name="ListDFsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ListDFsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDF">
+      <soap:operation soapAction="DeleteDF" style="document"/>
+      <wsdl:input name="DeleteDFRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteDFResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddDF">
+      <soap:operation soapAction="AddDF" style="document"/>
+      <wsdl:input name="AddDFRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AddDFResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInterception">
+      <soap:operation soapAction="DeleteInterception" style="document"/>
+      <wsdl:input name="DeleteInterceptionRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteInterceptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListInterceptions">
+      <soap:operation soapAction="ListInterceptions" style="document"/>
+      <wsdl:input name="ListInterceptionsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ListInterceptionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDF">
+      <soap:operation soapAction="RetrieveDF" style="document"/>
+      <wsdl:input name="RetrieveDFRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RetrieveDFResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectionCheck">
+      <soap:operation soapAction="ConnectionCheck" style="document"/>
+      <wsdl:input name="ConnectionCheckRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConnectionCheckResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddInterception">
+      <soap:operation soapAction="AddInterception" style="document"/>
+      <wsdl:input name="AddInterceptionRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AddInterceptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyInterception">
+      <soap:operation soapAction="ModifyInterception" style="document"/>
+      <wsdl:input name="ModifyInterceptionRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ModifyInterceptionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ErrorResponseType">
+        <soap:fault name="ErrorResponseType" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ErrorResponse">
+      <soap:operation soapAction="ErrorResponse" style="document"/>
+      <wsdl:input name="ErrorResponse">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ErrorResponseResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://192.168.33.166:443/soap</con:endpoint></con:endpoints><con:operation id="5129db0d-dc03-4534-b2df-efdbe92d87fc" isOneWay="false" action="AddDF" name="AddDF" bindingOperationName="AddDF" type="Request-Response" outputName="AddDFResponse" inputName="AddDFRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ebcff3aa-5fcd-42e0-bcf7-cbbe832fce68" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md" xmlns:x1="http://genericX1.cirpack/genericX1-extern-md/x1">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:AddDFRequest>\r
+         <x1:protocol>tCp</x1:protocol>\r
+         <x1:name>Maroual</x1:name>\r
+         <x1:ip>192.168.33.122</x1:ip>\r
+         <x1:port>65530</x1:port>\r
+         <x1:dfid>4294967295</x1:dfid>\r
+      </gen:AddDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddDF"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e7428cb3-2b77-4b3a-84a9-9429cd5cb96a" isOneWay="false" action="AddInterception" name="AddInterception" bindingOperationName="AddInterception" type="Request-Response" outputName="AddInterceptionResponse" inputName="AddInterceptionRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ad7e2c17-e996-4694-8b4e-7adecb9f4e0b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md" xmlns:x1="http://genericX1.cirpack/genericX1-extern-md/x1">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:AddInterceptionRequest>\r
+         <x1:targetNumber>?</x1:targetNumber>\r
+         <x1:targetType>?</x1:targetType>\r
+         <x1:df2id>?</x1:df2id>\r
+         <x1:liid>?</x1:liid>\r
+         <!--Optional:-->\r
+         <x1:df3id>?</x1:df3id>\r
+      </gen:AddInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddInterception"/></con:call></con:operation><con:operation id="843db956-b6f9-4526-815a-b5ccd47f7db7" isOneWay="false" action="ConnectionCheck" name="ConnectionCheck" bindingOperationName="ConnectionCheck" type="Request-Response" outputName="ConnectionCheckResponse" inputName="ConnectionCheckRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba53dad2-87d8-4fcc-b3c6-e00b85d6f595" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:ConnectionCheckRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="ConnectionCheck"/></con:call></con:operation><con:operation id="2a05760a-4603-4c55-944e-944c9a74aa92" isOneWay="false" action="DeleteDF" name="DeleteDF" bindingOperationName="DeleteDF" type="Request-Response" outputName="DeleteDFResponse" inputName="DeleteDFRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9972475d-36d1-47a6-aa37-1287a7c40f01" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>?</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="DeleteDF"/></con:call></con:operation><con:operation id="0fc86dbc-691c-426f-aa93-70c79c4bfbcb" isOneWay="false" action="DeleteInterception" name="DeleteInterception" bindingOperationName="DeleteInterception" type="Request-Response" outputName="DeleteInterceptionResponse" inputName="DeleteInterceptionRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d0183205-d3a6-4d14-a956-7e0641f8b6b4" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>?</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="DeleteInterception"/></con:call></con:operation><con:operation id="5523a679-afea-46f4-b268-658e6e14d1d0" isOneWay="false" action="ErrorResponse" name="ErrorResponse" bindingOperationName="ErrorResponse" type="Request-Response" outputName="ErrorResponseResponse" inputName="ErrorResponse" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="93521b77-33f2-4116-8789-11feaeca28ee" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:ErrorResponse/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="ErrorResponse"/></con:call></con:operation><con:operation id="eee4242e-b52e-4fbc-bedc-d908ea453d60" isOneWay="false" action="ListDFs" name="ListDFs" bindingOperationName="ListDFs" type="Request-Response" outputName="ListDFsResponse" inputName="ListDFsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2217b1af-4479-4f05-840d-037bf806a49f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:ListDFsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="ListDFs"/></con:call></con:operation><con:operation id="e57dcb45-8b75-4e7f-b652-24dbcd5dae1a" isOneWay="false" action="ListInterceptions" name="ListInterceptions" bindingOperationName="ListInterceptions" type="Request-Response" outputName="ListInterceptionsResponse" inputName="ListInterceptionsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f00cddf7-f438-4565-8311-872cdef4f9fb" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:ListInterceptionsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="ListInterceptions"/></con:call></con:operation><con:operation id="0dab761c-8865-4476-a945-0521f8bf6321" isOneWay="false" action="ModifyDF" name="ModifyDF" bindingOperationName="ModifyDF" type="Request-Response" outputName="ModifyDFResponse" inputName="ModifyDFRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1e86bbca-c26d-46dc-a374-2e4af5acf23c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md" xmlns:x1="http://genericX1.cirpack/genericX1-extern-md/x1">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:ModifyDFRequest>\r
+         <x1:protocol>?</x1:protocol>\r
+         <x1:name>?</x1:name>\r
+         <x1:ip>?</x1:ip>\r
+         <x1:port>?</x1:port>\r
+         <x1:dfid>?</x1:dfid>\r
+      </gen:ModifyDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="ModifyDF"/></con:call></con:operation><con:operation id="7436cc72-508d-4660-9483-6d24c856bde2" isOneWay="false" action="ModifyInterception" name="ModifyInterception" bindingOperationName="ModifyInterception" type="Request-Response" outputName="ModifyInterceptionResponse" inputName="ModifyInterceptionRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1029baa5-78c0-4d7a-9e96-566f06decf8f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md" xmlns:x1="http://genericX1.cirpack/genericX1-extern-md/x1">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:ModifyInterceptionRequest>\r
+         <x1:targetNumber>?</x1:targetNumber>\r
+         <x1:targetType>?</x1:targetType>\r
+         <x1:df2id>?</x1:df2id>\r
+         <x1:liid>?</x1:liid>\r
+         <!--Optional:-->\r
+         <x1:df3id>?</x1:df3id>\r
+      </gen:ModifyInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="ModifyInterception"/></con:call></con:operation><con:operation id="aca7bf7f-16f0-4ad8-bdcb-7fedd58e5b44" isOneWay="false" action="RetrieveDF" name="RetrieveDF" bindingOperationName="RetrieveDF" type="Request-Response" outputName="RetrieveDFResponse" inputName="RetrieveDFRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fcb12f47-9a8e-4126-a638-2b891276c253" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:RetrieveDFRequest>?</gen:RetrieveDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="RetrieveDF"/></con:call></con:operation><con:operation id="c2b72142-d4e5-4b32-9758-e22fcc39cb77" isOneWay="false" action="RetrieveInterception" name="RetrieveInterception" bindingOperationName="RetrieveInterception" type="Request-Response" outputName="RetrieveInterceptionResponse" inputName="RetrieveInterceptionRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="adcc8d0f-6429-429d-b1ba-37cfad482858" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:RetrieveInterceptionRequest>?</gen:RetrieveInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="RetrieveInterception"/></con:call></con:operation></con:interface><con:testSuite id="f28a5dd6-fbfa-4e5e-8f6a-31a47d7ce90f" name="Clear TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="cd027f7a-5784-4abf-9271-74bf75eb0b99" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DeleteDF TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="request" id="b70d71da-76a4-4b96-91f2-ac41caba2def" name="Delete_Valid_DF_1st"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Valid_DF_1st" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>1</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="9c69377b-74b3-4fd2-9d33-202a1eadd357" name="Delete_Valid_DF_With_ID_Is_Maximum_Value"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Valid_DF_With_ID_Is_Maximum_Value" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>4294967295</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="28c0f57b-70a4-4e48-b8ab-f8cce1bd9e2b" name="DeleteDF_3rd"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_3rd" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>3</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="af8809cd-be35-49cc-b2e3-54af78ba52da" name="DeleteDF_4th"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_4th" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>4</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="f2908c08-1a75-4ac4-bbe4-80d3b3361eb8" name="DeleteDF_5th"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_5th" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>5</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="2faf8bb3-5d83-47e5-be66-219180b68878" name="DeleteDF_6th"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_6th" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>6</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="16d514ac-79b7-475b-9fc9-83fd0e4e1193" name="DeleteDF_7th"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_7th" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>7</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="956a5e29-cf22-452f-99a0-34f51bdc1557" name="DeleteDF_8th"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_8th" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>8</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="68d61fea-3100-465f-9ad3-b991c39096ea" name="DeleteDF_9th"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_9th" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>9</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="6acdf34e-0760-4a1f-9ade-ff3afaf59eb1" name="DeleteDF_0" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_0" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>0</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="19eed02e-0607-4247-823a-fbb8f2b3009d" name="DeleteDF_10th_Disa" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_10th_Disa" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>10</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="a5bc635f-0d7a-4412-a2b6-a5dd6427674d" name="DeleteDF_11th_Disa" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_11th_Disa" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>11</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="f9a9e449-b479-4b70-b418-39ebf68df5dc" name="DeleteDF_12th_Disa" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="DeleteDF_12th_Disa" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>12</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;ns2:success>true&lt;/ns2:success></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="6d0a0b4b-4f0f-48f4-aed8-63b9b7742a29" name="Delete_Invalid_DF_With_DF_Not_Existed"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Invalid_DF_With_DF_Not_Existed" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>15</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;faultstring>DF does not exist and cannot be deleted/retrieved&lt;/faultstring></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="cf90c4a4-b800-4b41-a8d1-36a6ed33c04f" name="Delete_Invalid_DF_With_ID_Is_Unset"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Invalid_DF_With_ID_Is_Unset" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest></gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;faultstring>Mandatory parameter missing&lt;/faultstring></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="845df3eb-5847-4fdc-9ca2-11cef9b7f363" name="Delete_Invalid_DF_With_ID_Is_0"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Invalid_DF_With_ID_Is_0" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest></gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;faultstring>Mandatory parameter missing&lt;/faultstring></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="d8e7f22a-11e1-422c-b5b0-96348700acd9" name="Delete_Invalid_DF_With_ID_Is_String"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Invalid_DF_With_ID_Is_String" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>ABC</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>&lt;faultcode>soap11env:Client.ValidationError&lt;/faultcode></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="75ac41db-bcbb-4561-8984-d5b562458071" name="Contains 2"><con:configuration><token>&lt;faultstring>Could not cast "'ABC'" to integer&lt;/faultstring></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="a9d487f8-8b34-4bee-bda0-5d10188ee58b" name="Delete_Invalid_DF_With_DF_used_by_an_active_Interception"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteDF</con:operation><con:request name="Delete_Invalid_DF_With_DF_used_by_an_active_Interception" id="613abb20-0427-42ff-ba4b-59211c527bab"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteDFRequest>12</gen:DeleteDFRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="f1664183-c864-4b32-b566-a4a3fee2f195" name="Contains"><con:configuration><token>         &lt;faultcode>soap11env:Client&lt;/faultcode>
+         &lt;faultstring>DF is in use and cannot be deleted&lt;/faultstring>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="45db95ff-38c4-4a08-b08c-9e38d4fbf7f5" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" id="bc6ce387-a79b-4dc1-8fc7-a4a119abb11e" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="Invalid HTTP Status Codes" id="3436ee48-83d6-4d9e-ac9e-358da8a563a5" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteDF" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:tearDownScript/><con:properties/></con:testCase><con:testCase id="2e62d239-fe2c-4158-b133-647cd71f475f" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="DeleteInterception TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="request" id="599d7d79-fba5-40ed-8596-dde90b93e47f" name="Delete_Valid_Interception_101"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="Delete_Valid_Interception_101" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>101</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="ffde1f74-3347-422d-8d99-86c5a53c183c" name="Delete_Valid_Interception_With_ID_Is_Maximum_Value"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="Delete_Valid_Interception_With_ID_Is_Maximum_Value" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>4294967295</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="c26f6df1-d169-4e84-af4b-9c051430ca38" name="DeleteInterception_102"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="DeleteInterception_102" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>102</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="2acae71f-d2cb-4003-a9b1-2d12f40fdd0c" name="DeleteInterception_103"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="DeleteInterception_103" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>103</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="045aca02-7da1-4ba3-9770-d948b99afcb1" name="DeleteInterception_110"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="DeleteInterception_110" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>110</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="800c1e4d-edc1-4eb2-9745-3a6d3c363b47" name="DeleteInterception_113"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="DeleteInterception_113" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>113</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="cbc17d2d-0159-4032-8708-b1d0c008c171" name="DeleteInterception_114"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="DeleteInterception_114" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>114</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="1f12941e-a0e4-4207-980e-57e4a6a6ba15" name="DeleteInterception_115"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="DeleteInterception_115" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>115</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token>      &lt;ns1:DeleteInterceptionResponse>
+         &lt;ns2:success>true&lt;/ns2:success>
+</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>400,401,403,404,405,406,407,408,409,500,503,504
+</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="2f318b9c-a7d5-4799-b483-842dbfafd31d" name="Delete_Invalid_With_id_not_existed"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="Delete_Invalid_With_id_not_existed" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>123</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token><![CDATA[<soap11env:Envelope xmlns:ns2="http://genericX1.cirpack/genericX1-extern-md/x1" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://genericX1.cirpack/genericX1-extern-md" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soap11env:Body>
+      <soap11env:Fault>
+         <faultcode>soap11env:Client</faultcode>
+         <faultstring>Target is not active and cannot be deleted/retrieved</faultstring>
+         <faultactor/>
+         <detail>
+            <fault xsi:type="ns2:errorResponseType">
+               <ns2:errorcode>106</ns2:errorcode>
+               <ns2:errormessage>DF already exists</ns2:errormessage>
+            </fault>
+         </detail>
+      </soap11env:Fault>
+   </soap11env:Body>
+</soap11env:Envelope>]]></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="4b31a0cc-e616-4194-958b-84aa187a37be" name="Delete_Invalid_With_id_unset"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="Delete_Invalid_With_id_unset" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest></gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token><![CDATA[<soap11env:Envelope xmlns:ns2="http://genericX1.cirpack/genericX1-extern-md/x1" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://genericX1.cirpack/genericX1-extern-md" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soap11env:Body>
+      <soap11env:Fault>
+         <faultcode>soap11env:Client</faultcode>
+         <faultstring>Mandatory parameter missing : Id</faultstring>
+         <faultactor/>
+         <detail>
+            <fault xsi:type="ns2:errorResponseType">
+               <ns2:errorcode>106</ns2:errorcode>
+               <ns2:errormessage>DF already exists</ns2:errormessage>
+            </fault>
+         </detail>
+      </soap11env:Fault>
+   </soap11env:Body>
+</soap11env:Envelope>]]></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="9b4dd3b4-5d44-4172-b4a5-a0ae219bc3fa" name="Delete_Invalid_With_id_Is_String"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>soapServer</con:interface><con:operation>DeleteInterception</con:operation><con:request name="Delete_Invalid_With_id_Is_String" id="2a07fdd2-a168-4f17-9b8b-5b74abd1e1b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://192.168.33.166:443/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:DeleteInterceptionRequest>ABCD</gen:DeleteInterceptionRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="ca94f289-528e-4a1f-9015-a17742ea3af4" name="Contains"><con:configuration><token><![CDATA[<soap11env:Envelope xmlns:ns2="http://genericX1.cirpack/genericX1-extern-md/x1" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://genericX1.cirpack/genericX1-extern-md" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soap11env:Body>
+      <soap11env:Fault>
+         <faultcode>soap11env:Client.ValidationError</faultcode>
+         <faultstring>Could not cast "'ABCD'" to integer</faultstring>
+         <faultactor/>
+      </soap11env:Fault>
+   </soap11env:Body>
+</soap11env:Envelope>]]></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="SOAP Response" id="70e422e9-10cf-416f-a90b-f9d51e2f5808" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" id="88ee5295-48c4-4f35-b1d9-88052abc5463" name="Invalid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="1461b298-b97d-4aae-a2d3-d232af2d8e5d" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="DeleteInterception" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:tearDownScript/><con:properties/></con:testCase><con:properties/><con:tearDownScript>
+// Code to execute the GenerateCSVReport test step
+testRunner.testCase.testSuite.project.testSuites["Library"].testCases["Reporting_Utility"].
+testSteps["GenerateCSVReport"].run(testRunner, context);</con:tearDownScript></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
