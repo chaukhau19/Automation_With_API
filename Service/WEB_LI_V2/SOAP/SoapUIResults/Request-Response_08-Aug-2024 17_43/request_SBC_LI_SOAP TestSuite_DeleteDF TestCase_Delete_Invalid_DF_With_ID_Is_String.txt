@@ -1,6 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://genericX1.cirpack/genericX1-extern-md">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <gen:DeleteDFRequest>ABC</gen:DeleteDFRequest>
-   </soapenv:Body>
-</soapenv:Envelope>
